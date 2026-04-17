@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title> بهجة | المنتجات </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="header-links a:hover">
+<!-- حط هذا قبل </body> مباشرة -->
+
+<script>
+// نفس النظام بالضبط
+function updateCartBadge() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.querySelector('.cart-badge').innerText = cart.length;
+}
+
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartBadge();
+}
+
+document.querySelectorAll('.product-card').forEach(card => {
+    const btn = card.querySelector('button');
+    if (!btn) return;
+
+    btn.onclick = () => {
+        const name = card.querySelector('h3').innerText;
+        const price = card.querySelector('.new-price, .price')?.innerText || "";
+        const img = card.querySelector('img').src;
+
+        addToCart({ name, price, img });
+    };
+});
+
+window.onload = updateCartBadge;
+</script>
+<script>
+  let count = 0;
+  const badge = document.querySelector('.cart-badge');
+  const addButtons = document.querySelectorAll('.hero-action-btn, .product-card'); 
+
+  // وظيفة لزيادة العداد عند الضغط
+  function addToCart() {
+    count++;
+    badge.innerText = count;
+    // تأثير حركة بسيط للدائرة الحمراء
+    badge.style.transform = "scale(1.2)";
+    setTimeout(() => badge.style.transform = "scale(1)", 200);
+  }
+
+  // ربط الأزرار بالوظيفة
+  document.querySelectorAll('button').forEach(btn => {
+    if(btn.innerText.includes("أضف")) {
+      btn.onclick = addToCart;
+    }
+  });
+</script>
+  <!-- Header -->
+  <header class="header">
+    <img src="https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/EqAYD/gDz6RQMCkTSMRKQSXzrUYmn01p8qciafe8Jfh7AN.png" alt="Bahja Logo" class="logo">
+
+    <nav class="nav">
+      <a href="بهجة.html">الرئيسية</a>
+      <a href="المنتجات.html">المنتجات</a>
+      <a href="من نحن.html">من نحن</a>
+      <a href="التواصل.html">تواصل</a>
+    </nav>
+
+<div class="cart-container">
+  <a href="السلة.html" class="cart-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="cart-icon" viewBox="0 0 16 16">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg>
+    <span class="cart-badge">0</span>
+  </a>
+</div>  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>بهجة</h1>
+<h4>
+        متجر متخصص في السبح الفاخرة، نقدم قطعًا مختارة بعناية تجمع بين الجمال والجودة.
+
+</h4>
+<h4>
+              نؤمن في بهجة ان السبحة ليست مجرد اداة , بل رمز للسكينة والجمال
+
+</h4>
+   
+   <p class="red">
+      ان واجهتك 
+      اي مشكلة 
+      في المتجر
+       يرجى التواصل
+        مع الدعم الفني
+    </p>
+  </section>
+
+  <!-- Products -->
+ <section class="products">
+    <h2>منتجاتنا | Our Products</h2>
+
+    <!-- سبحات -->
+   <div class="product-card">
+<a href="subha1  اصفر.html">  <img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مب_مدورة_اللون_الاصفر.png" alt="سبحة"> <!--1-->
+</a>
+    <h3> سبحة بكلايت بلجيكي - اصفر</h3>
+        <h5 class="subha12">كمية محدودة</h5>
+
+  <div class="price-wrapper">
+    <span class="old-price">88.50 ر.س</span>
+    <span class="new-price">70.80 ر.س</span>
+</div>
+<button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+   <a href="subha2 اللون البنفسجي.html">  <img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مب_مدورة_اللون_البنفسجي.png" alt="سبحة"><!--2-->
+</a>
+    <h3>سبحة بكلايت بلجيكي - بنفسجي </h3>
+        <h5 class="subha12">كمية محدودة</h5>
+
+ <div class="price-wrapper">
+<span class="old-price">   87 ر.س </span>
+        <span class="new-price"> 69.60 ر.س </span>
+
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+<a href="subha4 فاتوران طربزونة.html">  <img src="BAHJA_SABHA/Screenshot 2026-03-12 231131.png" alt="سبحة"><!--3-->
+</a>
+  <h3>سبحة فاتوران كركوشة </h3>
+      <h5 class="subha12">اخر حبة </h5>
+
+  <p class="price">340 ر.س</p>
+  
+  <button class="buy-btn">أضف للسلة</button>
+
+</div>
+
+    <div class="product-card">
+<a href="subha6 فاتوران كركوشة.html">  <img src="BAHJA_SABHA/سبحة_فاتوران_كركوشة_مب_مدورة.png" alt="سبحة"> <!--4-->
+</a>  <h3>سبحة فاتوران كركوشة </h3>
+    <h5 class="subha12">كمية محدودة</h5>
+
+  <p class="price">145 ر.س</p> <button class="buy-btn">أضف للسلة</button>
+</div>
+   <div class="product-card">
+<a href="subha5 كوك سوبر.html">  <img src="BAHJA_SABHA/سبحة_كوك_سوبر_طربزونة_مب_مدورة.png" alt="سبحة"> <!--5-->
+</a>
+    <h3>سبحة كوك سوبر  </h3>
+        <h5 class="subha12">كمية محدودة</h5>
+
+  <p class="price">240 ر.س</p> <button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+<a href="subha3 احمر.html"><img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مدورة_اللون_الاحمر.png" alt="سبحة">
+  </a>
+    <h3>سبحة بكلايت بلجيكي - احمر</h3>
+      <h5 class="subha12">كمية محدودة</h5>
+
+<div class="price-wrapper">
+    <span class="old-price"> 85.99 ر.س </span> 
+    <span class="new-price"> 68.79 ر.س </span> 
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>
+
+<div class="product-card">
+<img src="https://www.bing.com/th/id/OIP.Xn69DhoekiNRekU2XmsppwHaHa?w=188&h=188&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="سبحة">
+  
+<h3> قريبا باذن الرحمن</h3>
+ 
+      <h5 class="subha12"> سنوفر سبح اضافية فاخرة</h5>
+
+  <p class="price"></p> <button class="buy-btn">أضف للسلة</button>
+</div>
+<div class="product-card">
+<img src="https://www.bing.com/th/id/OIP.Xn69DhoekiNRekU2XmsppwHaHa?w=188&h=188&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2" alt="سبحة">
+  
+<h3> قريبا باذن الرحمن</h3>
+ 
+      <h5 class="subha12"> سنوفر سبح اضافية فاخرة</h5>
+
+  <p class="price"></p> <button class="buy-btn">أضف للسلة</button>
+</div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 بهجة - جميع الحقوق محفوظة</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head >
+  <meta charset="UTF-8">
+  <title>بهجة | Bahja</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="header-links a:hover">
+
+  <!-- Header -->
+  <header  class="header">
+    <img src="https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/EqAYD/gDz6RQMCkTSMRKQSXzrUYmn01p8qciafe8Jfh7AN.png" alt="Bahja Logo" class="logo">
+
+    <nav class="nav">
+      <a href="بهجة.html">الرئيسية</a>
+      <a href="من نحن.html">من نحن</a>
+      <a href="التواصل.html">تواصل</a>
+
+    </nav>
+
+    <button onclick="resetCart()" >   <div class="cart-container">
+  <a href="السلة.html" class="cart-link">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="cart-icon" viewBox="0 0 16 16">
+      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg>
+    <span class="cart-badge">0</span>
+  </a>
+</div></button>
+
+  </header>
+<style>
+ /* الهيرو */
+.home-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* الصور */
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* الصورة النشطة */
+.slide.active {
+  opacity: 1;
+}
+
+/* تغميق */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+  z-index: 1;
+}
+
+/* النص */
+/* النص (يسار + بوكس فخم) */
+.hero-content {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50px);
+
+  z-index: 2;
+  color: white;
+  max-width: 450px;
+  text-align: left;
+
+  /* بوكس شفاف */
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 15px;
+
+  /* بلور */
+  backdrop-filter: blur(10px);
+
+  /* حركة دخول */
+  opacity: 0;
+  animation: slideIn 1s ease forwards;
+}
+
+/* الخط الذهبي */
+.hero-content::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 20px;
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(to bottom, gold, orange);
+  border-radius: 5px;
+}
+
+/* حركة */
+@keyframes slideIn {
+  to {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+}
+
+/* العنوان */
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 15px;
+
+  /* تأثير فخم */
+  text-shadow: 0 5px 20px rgba(0,0,0,0.7);
+}
+
+/* الوصف */
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #f1f1f1;
+
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+/* الزر */
+.hero-btn {
+  display: inline-block;
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+/* حركة خفيفة */
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+/* 📱 للجوال */@media (max-width: 768px) {
+
+  /* الهيرو */
+  .home-hero {
+    height: 70vh;
+  }
+
+  /* الصور */
+  .slide {
+    object-fit: cover;
+  }
+
+  /* النص */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 320px;
+
+    text-align: center;
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+
+    opacity: 1; /* عشان ما يختفي بسبب الانميشن */
+  }
+
+  /* نشيل الخط الذهبي بالجوال */
+  .hero-content::before {
+    display: none;
+  }
+
+  /* العنوان */
+  .hero-content h1 {
+    font-size: 26px;
+    line-height: 1.4;
+  }
+
+  /* الوصف */
+  .hero-content p {
+    font-size: 15px;
+    margin: 10px 0 15px;
+  }
+
+  /* الزر */
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+}@media (max-width: 768px) {
+
+ /* 📱 تصغير البنر للجوال */
+@media (max-width: 768px) {
+
+  .home-hero {
+    height: 60vh !important; /* بدل 100vh */
+    min-height: unset;
+  }
+
+  .slider {
+    height: 100%;
+  }
+
+  .slide {
+    height: 100%;
+    width: 100%;
+    object-fit: contain; /* مهم عشان تصغر الصورة */
+  }
+
+}
+/* 📱 تصغير الصور للجوال */
+@media (max-width: 768px) {
+
+  /* كل الصور */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* صور المنتجات */
+  .product-card img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+  }
+
+
+
+}
+  /* النص */
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 320px;
+
+    text-align: center;
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+
+    opacity: 1; /* عشان ما يختفي بسبب الانميشن */
+  }
+
+  /* نشيل الخط الذهبي بالجوال */
+  .hero-content::before {
+    display: none;
+  }
+
+  /* العنوان */
+  .hero-content h1 {
+    font-size: 26px;
+    line-height: 1.4;
+  }
+
+  /* الوصف */
+  .hero-content p {
+    font-size: 15px;
+    margin: 10px 0 15px;
+  }
+
+  /* الزر */
+  .hero-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+
+}
+</style>
+  <!-- Hero -->
+
+ <section class="home-hero">
+
+  <div class="slider">
+    <img src="BAHJA_SABHA/بهجه_خصومات_20بالمية_على_جميع_المنتجات+سبحة_فاتوران_كركوشة________معدله2.png" class="slide active">
+    <img src="BAHJA_SABHA/بهجه_خصومات_20بالمية_على_جميع_المنتجات+سبحة_فاتوران_كركوشة________معدله1.png" class="slide active">
+    <img src="BAHJA_SABHA/بهجه_خصومات_20بالمية_على_جميع_المنتجات+سبحة_فاتوران_كركوشة________معدله3.png" class="slide ">
+
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>خصومات تصل إلى 20%</h1>
+    <p>على جميع سبح البكلايت الفاخرة</p>
+  </div>
+
+</section>
+  <!-- Products -->
+  <section class="products">
+    <h2> سبح بكلايت بلجيكي </h2>
+    <div class="product-card">
+   <a href="subha1  اصفر.html"><img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مب_مدورة_اللون_الاصفر.png" alt="سبحة"></a>
+  <h3>سبحة بكلايت طربزونة - اصفر </h3>
+    <h5 class="subha12">كمية محدودة</h5>
+  <div class="price-wrapper">
+    <span class="old-price">88.50 ر.س</span>
+    <span class="new-price">70.80 ر.س</span>
+
+    
+</div>
+<button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+  <a href="subha2 اللون البنفسجي.html"><img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مب_مدورة_اللون_البنفسجي.png" alt="سبحة"></a>
+  <h3>سبحة بكلايت طربزونة - بنفسجي </h3>
+    <h5 class="subha12">كمية محدودة</h5>
+
+  <div class="price-wrapper">
+    <span class="old-price">   87 ر.س </span>
+        <span class="new-price"> 69.60 ر.س </span>
+
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+  <a href="subha3 احمر.html">  <img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مدورة_اللون_الاحمر.png" alt="سبحة">
+</a>
+    <h3> سبحة بكلايت بلجيكي - عنابي</h3>
+    <h5 class="subha12">كمية محدودة</h5>
+
+  <div class="price-wrapper">
+    <span class="old-price"> 85.99 ر.س </span> 
+    <span class="new-price"> 68.79 ر.س </span> 
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>
+
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>       
+  </section>
+<section class="home-hero">
+
+  <div class="slider">
+        <img src="BAHJA_SABHA/test_1440x720_.png" class="slide active">
+        <img src="BAHJA_SABHA/تست.png" class="slide">
+  </div>
+
+  <div class="hero-overlay"></div>
+
+</section>
+   <!-- Best Products -->
+  <section class="products">
+    <h2> سبح الفاتوران </h2>
+
+        <div class="product-card">
+   <a href="subha4 فاتوران طربزونة.html"><img src="BAHJA_SABHA/Screenshot 2026-03-12 231131.png" alt="سبحة"></a>
+  <h3>سبحة فاتوران كركوشة - خرز كبير </h3>
+    <h5 class="subha12"> اخر حبة </h5>
+  <div class="price-wrapper">
+    <span class="price">340 ر.س</span>
+    
+</div>
+<button class="buy-btn">أضف للسلة</button>
+</div>
+
+   <div class="product-card">
+  <a href="subha6 فاتوران كركوشة.html"><img src="BAHJA_SABHA/سبحة_فاتوران_كركوشة_مب_مدورة.png" alt="سبحة"></a>
+  <h3>سبحة فاتوران كركوشة- اصفر </h3>
+    <h5 class="subha12">كمية محدودة</h5>
+
+  <div class="price-wrapper">
+    <span class="price">145 ر.س </span>
+
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>
+
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>   
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>   
+
+  </section>
+
+ <section class="home-hero">
+
+  <div class="slider">
+    <img src="BAHJA_SABHA/كوك.png" class="slide active">
+</section>
+
+
+
+
+
+
+  <section class="products">
+    <h2>
+      سبح كوك 
+    </h2>
+
+      <div class="product-card">
+   <div class="product-card">
+  <a href="subha5 كوك سوبر.html"><img src="BAHJA_SABHA/سبحة_كوك_سوبر_طربزونة_مدورة.png" alt="سبحة"></a>
+  <h3>سبحة كوك سوبر فاخرة </h3>
+    <h5 class="subha12">كمية محدودة</h5>
+
+  <div class="price-wrapper">
+    <span class="old-price price">750 ر.س </span>
+    <span class="new-price">615 ر.س </span>
+
+</div>
+ <button class="buy-btn">أضف للسلة</button>
+</div>  
+</div>
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>   
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>   
+    <div class="product-card">
+    <img src="BAHJA_SABHA/قريبا_جدا.png" alt="سبحة">
+
+</a>  <h3> سنوفر سبحة مميزة  </h3>
+  <p class="price"> بأذن الله قريبا جدا </p> 
+</div>   
+
+
+</div>
+</section>
+
+  <!-- Footer -->
+<footer class="footer">
+    <p>© 2026 بهجة - جميع الحقوق محفوظة</p>
+  </footer>
+  
+<script>
+// تحديث العداد
+function updateCartBadge() {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.querySelector('.cart-badge').innerText = cart.length;
+}
+
+// إضافة منتج
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartBadge();
+
+    // تأثير حركة
+    const badge = document.querySelector('.cart-badge');
+    badge.style.transform = "scale(1.2)";
+    setTimeout(() => badge.style.transform = "scale(1)", 200);
+}
+
+// تصفير السلة 🔥
+function resetCart() {
+    localStorage.removeItem('cart');
+    updateCartBadge();
+}
+
+// ربط الأزرار
+document.querySelectorAll('.product-card').forEach(card => {
+    const btn = card.querySelector('button');
+    if (!btn) return;
+
+    btn.onclick = () => {
+        const name = card.querySelector('h3').innerText;
+        const price = card.querySelector('.new-price, .price')?.innerText || "";
+        const img = card.querySelector('img').src;
+
+        addToCart({ name, price, img });
+    };
+});
+
+window.onload = updateCartBadge;
+</script>
+
+</body>
+</html>

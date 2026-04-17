@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تفاصيل المنتج | بهجة</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-details {
+            display: flex;
+            max-width: 1000px;
+            margin: 50px auto;
+            gap: 40px;
+            padding: 20px;
+            align-items: center;
+        }
+        .product-image-large {
+            flex: 1;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+        }
+        .product-info-box {
+            flex: 1;
+            text-align: right;
+        }
+        .product-info-box h1 { font-size: 2.5rem; margin-bottom: 15px; }
+        .product-info-box .price-tag { 
+            font-size: 1.8rem; 
+            color: #d4a373; 
+            font-weight: bold; 
+            margin-bottom: 20px; 
+        }
+        .product-description { 
+            line-height: 1.8; 
+            color: #555; 
+            margin-bottom: 30px; 
+            font-size: 1.1rem;
+        }
+        .specs-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .specs-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .specs-list li::before { content: "•"; color: #d4a373; font-weight: bold; }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #888;
+            text-decoration: none;
+        }
+        .back-link:hover { color: #000; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <img src="https://cdn.salla.sa/cdn-cgi/image/fit=scale-down,width=400,height=400,onerror=redirect,format=auto/EqAYD/gDz6RQMCkTSMRKQSXzrUYmn01p8qciafe8Jfh7AN.png" alt="Logo" class="logo">
+        <nav class="nav">
+            <a href="بهجة.html">الرئيسية</a>
+            <a href="من نحن.html"> من نحن  </a>
+        </nav>
+        <div class="cart-container">
+            <a href="السلة.html" class="cart-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="cart-icon" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <span class="cart-badge">0</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="product-details">
+        <img src="BAHJA_SABHA/سبحة_بكلايت_طربزونة_مدورة_اللون_الاحمر.png" class="product-image-large" alt="سبحة فاخرة"
+        width="600">
+
+        <div class="product-info-box">
+            <h1>سبحة بكلايت بلجيكي فاخرة</h1>
+            <p class="price-tag">84.5 ر.س</p>
+            
+            <p class="product-description">
+                تتميز هذه السبحة بخراطة يدوية دقيقة وملمس ناعم كالحرير، صُنعت من أجود أنواع البكلايت البلجيكي المقاوم للحرارة والذي يتغير لونه مع مرور الوقت ليزداد جمالاً وفخامة.
+            </p>
+
+            <ul class="specs-list">
+                <li><strong>الخامة:</strong> بكلايت بلجيكي</li>
+                <li><strong>اللون:</strong> احمر</li>
+                <li><strong>عدد الخرز:</strong> 51 خرزة</li>
+                <li><strong>طربزونة:</strong> فضة </li>
+            </ul>
+
+            <button class="buy-btn" onclick="addToCart()" style="padding: 15px; font-size: 1.2rem;">أضف للسلة الآن</button>
+            <br>
+            <a href="بهجة.html" class="back-link">← العودة للرئيسية</a>
+        </div>
+    </section>
+
+    <script>
+        function updateCartBadge() {
+            const cartCount = localStorage.getItem('cartCount') || 0;
+            const badge = document.querySelector('.cart-badge');
+            if (badge) badge.innerText = cartCount;
+        }
+
+        function addToCart() {
+            let count = parseInt(localStorage.getItem('cartCount') || 0);
+            count++;
+            localStorage.setItem('cartCount', count);
+            updateCartBadge();
+            alert("تمت إضافة السبحة لسلتك بنجاح! ✨");
+        }
+
+        window.onload = updateCartBadge;
+    </script>
+</body>
+</html>
